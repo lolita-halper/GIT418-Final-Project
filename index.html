@@ -7,10 +7,10 @@
     <title>A Baking Story - Baking Pasteries for Every Occasion.</title>
     
      <!--For the icons-->
-     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js" async></script>
-     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js" async></script>
+     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js" defer></script>
+     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js" defer></script>
      <!--My written javascript file with async-->
-    <script src="js/script.js" async></script>
+    <script src="js/script.js" defer></script>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Liu+Jian+Mao+Cao&display=swap" rel="stylesheet">
@@ -75,105 +75,134 @@
         
         <section id="pastries">
             <h2>Always Fresh — Order your Pastries</h2>
-
+      
             <div id="cartIcon" class="addToCart">
-                <ion-icon name="cart-outline"></ion-icon><span id="cartItemCount">(0)</span>
-                <div id="cartItemsList"></div>Total: $<span id="total-sum">0.00</span>
-                <button class="removeOneItem" data-last-price="24">Remove One Item</button>
+              <ion-icon name="cart-outline"></ion-icon><span id="cartItemCount">(0)</span>
+              <div class="cartAmounts">Subtotal: $<span id="subtotal-sum">0.00</span></div>
+              <div class="cartAmounts">Sales Tax (8.75%): $<span id="tax-sum">0.00</span></div>
+              <div class="cartAmounts">Total: $<span id="total-sum">0.00</span></div>
             </div>
-
-                <section>
-                    <h3>Chocolate / Mint</h3>
-                    <img src="images/cupcake-chocolate-mint.jpg" alt="chocolate cupcake with mint frosting">
-                    <h4>Cupcake</h4>
-                    <ul>
-                        <li>Flavor: Chocolate</li>
-                        <li>Frosting: Mint Buttercream</li>
-                    </ul>
-                    <h5>$24/half doz</h5>
-                    <button class="addCart" data-name="Chocolate Mint Cupcake" data-price="24">Add to Cart</button>
-                </section>
-                
-                <section>
-                    <h3>Vanilla / Raspberry</h3>
-                    <img src="images/cupcake-raspberry.jpg" alt="Vanilla cupcake with raspberry whip cream frosting">
-                    <h4>Cupcake</h4>
-                    <ul>
-                        <li>Flavor: Vanilla</li>
-                        <li>Frosting: Raspberry Whipped Cream</li>
-                    </ul>
-                    <h5>$24/half doz</h5>
-                    <button class="addCart" data-name="Vanilla Raspberry Cupcake" data-price="24">Add to Cart</button>
-
-                </section>
-                <section>
-                    <h3>Vanilla / Coffee</h3>
-                    <img src="images/cupcake-coffee-cinnamon.jpg" alt="Cinnamon cupcake with vanilla-coffee frosting">
-                    <h4>Cupcake</h4>
-                    <ul>
-                        <li>Flavor: Cinnamon</li>
-                        <li>Frosting: Vanilla-Coffee Buttercream</li>
-                    </ul>
-                    <h5>$24/half doz</h5>
-                    <button class="addCart" data-name="Vanilla Coffee Cupcake" data-price="24">Add to Cart</button>
-                </section>
-                <section>
-                    <h3>Red Velvet / Vanilla</h3>
-                    <img src="images/cupcake-red-velvet.jpg" alt="Red Velvet cupcake with vanilla frosting">
-                    <h4>Cupcake</h4>
-                    <ul>
-                        <li>Flavor: Red Velvet</li>
-                        <li>Frosting: Vanilla Buttercream</li>
-                    </ul>
-                    <h5>$24/half doz</h5>
-                    <button class="addCart" data-name="Red Velvet Vanilla Cupcake" data-price="24">Add to Cart</button>
-                </section>
-           
-                <section>
-                    <h3>Mint / Strawberry</h3>
-                    <img src="images/macaron-strawberry.jpg" alt="Mint macaron with strawberry frosting">
-                    <h4>Macaron</h4>
-                    <ul>
-                        <li>Flavor: Mint</li>
-                        <li>Frosting: Strawberry</li>
-                    </ul>
-                    <h5>$24/half doz</h5>
-                    <button class="addCart" data-name="Mint Strawberry Macaron" data-price="24">Add to Cart</button>
-                </section>
-                <section>
-                    <h3>Raspberry / Vanilla</h3>
-                    <img src="images/macaron-raspberry.jpg" alt="Raspberry macaron with raspberry frosting">
-                    <h4>Macaron</h4>
-                    <ul>
-                        <li>Flavor: Raspberry</li>
-                        <li>Frosting: Raspberry</li>
-                    </ul>
-                    <h5>$24/half doz</h5>
-                    <button class="addCart" data-name="Raspberry Vanilla Macaron" data-price="24">Add to Cart</button>
-                </section>
-                <section>
-                    <h3>Chocolate / Nuts</h3>
-                    <img src="images/macaron-chocolate-almonds.jpg" alt="Chocolate macaron with chocolate and almond frosting">
-                    <h4>Macaron</h4>
-                    <ul>
-                        <li>Flavor: Chocolate</li>
-                        <li>Frosting: Chocolate-Almonds</li>
-                    </ul>
-                    <h5>$24/half doz</h5>
-                    <button class="addCart" data-name="Chocolate Nuts Macaron" data-price="24">Add to Cart</button>
-                </section>
-                <section>
-                    <h3>Honey / Butter</h3>
-                    <img src="images/macaron-vanilla-honey-butter.jpg" alt="Vanilla macaron with honey & butter frosting">
-                    <h4>Macaron</h4>
-                    <ul>
-                        <li>Flavor: Vanilla</li>
-                        <li>Frosting: Honey-Butter</li>
-                    </ul>
-                    <h5>$24/half doz</h5>
-                    <button class="addCart" data-name="Honey Butter" data-price="24">Add to Cart</button>
-                </section>
-        </section>
+      
+            <section class="goods">
+              <h3>Chocolate / Mint</h3>
+              <img src="images/cupcake-chocolate-mint.jpg" alt="chocolate cupcake with mint frosting">
+              <h4>Cupcake</h4>
+              <ul>
+                <li>Flavor: Chocolate</li>
+                <li>Frosting: Mint Buttercream</li>
+              </ul>
+              <h5>$24/half doz</h5>
+              <button class="addCart" data-name="Chocolate Mint Cupcake" data-price="24">Add to Cart</button>
+              <button class="adjustQuantity" data-name="Chocolate Mint Cupcake" data-action="decrease">-</button>
+              <span class="quantityDisplay" data-name="Chocolate Mint Cupcake">0</span>
+              <button class="adjustQuantity" data-name="Chocolate Mint Cupcake" data-action="increase">+</button>
+            </section>
+      
+            <section class="goods">
+              <h3>Vanilla / Raspberry</h3>
+              <img src="images/cupcake-raspberry.jpg" alt="Vanilla cupcake with raspberry whip cream frosting">
+              <h4>Cupcake</h4>
+              <ul>
+                <li>Flavor: Vanilla</li>
+                <li>Frosting: Raspberry Whipped Cream</li>
+              </ul>
+              <h5>$24/half doz</h5>
+              <button class="addCart" data-name="Vanilla Raspberry Cupcake" data-price="24">Add to Cart</button>
+              <button class="adjustQuantity" data-name="Vanilla Raspberry Cupcake" data-action="decrease">-</button>
+              <span class="quantityDisplay" data-name="Vanilla Raspberry Cupcake">0</span>
+              <button class="adjustQuantity" data-name="Vanilla Raspberry Cupcake" data-action="increase">+</button>
+            </section>
+      
+            <section class="goods">
+              <h3>Vanilla / Coffee</h3>
+              <img src="images/cupcake-coffee-cinnamon.jpg" alt="Cinnamon cupcake with vanilla-coffee frosting">
+              <h4>Cupcake</h4>
+              <ul>
+                <li>Flavor: Cinnamon</li>
+                <li>Frosting: Vanilla-Coffee Buttercream</li>
+              </ul>
+              <h5>$24/half doz</h5>
+              <button class="addCart" data-name="Vanilla Coffee Cupcake" data-price="24">Add to Cart</button>
+              <button class="adjustQuantity" data-name="Vanilla Coffee Cupcake" data-action="decrease">-</button>
+              <span class="quantityDisplay" data-name="Vanilla Coffee Cupcake">0</span>
+              <button class="adjustQuantity" data-name="Vanilla Coffee Cupcake" data-action="increase">+</button>
+            </section>
+      
+            <section class="goods">
+              <h3>Red Velvet / Vanilla</h3>
+              <img src="images/cupcake-red-velvet.jpg" alt="Red Velvet cupcake with vanilla frosting">
+              <h4>Cupcake</h4>
+              <ul>
+                <li>Flavor: Red Velvet</li>
+                <li>Frosting: Vanilla Buttercream</li>
+              </ul>
+              <h5>$24/half doz</h5>
+              <button class="addCart" data-name="Red Velvet Vanilla Cupcake" data-price="24">Add to Cart</button>
+              <button class="adjustQuantity" data-name="Red Velvet Vanilla Cupcake" data-action="decrease">-</button>
+              <span class="quantityDisplay" data-name="Red Velvet Vanilla Cupcake">0</span>
+              <button class="adjustQuantity" data-name="Red Velvet Vanilla Cupcake" data-action="increase">+</button>
+            </section>
+      
+            <section class="goods">
+              <h3>Mint / Strawberry</h3>
+              <img src="images/macaron-strawberry.jpg" alt="Mint macaron with strawberry frosting">
+              <h4>Macaron</h4>
+              <ul>
+                <li>Flavor: Mint</li>
+                <li>Frosting: Strawberry</li>
+              </ul>
+              <h5>$24/half doz</h5>
+              <button class="addCart" data-name="Mint Strawberry Macaron" data-price="24">Add to Cart</button>
+              <button class="adjustQuantity" data-name="Mint Strawberry Macaron" data-action="decrease">-</button>
+              <span class="quantityDisplay" data-name="Mint Strawberry Macaron">0</span>
+              <button class="adjustQuantity" data-name="Mint Strawberry Macaron" data-action="increase">+</button>
+            </section>
+      
+            <section class="goods">
+              <h3>Raspberry / Vanilla</h3>
+              <img src="images/macaron-raspberry.jpg" alt="Raspberry macaron with raspberry frosting">
+              <h4>Macaron</h4>
+              <ul>
+                <li>Flavor: Raspberry</li>
+                <li>Frosting: Raspberry</li>
+              </ul>
+              <h5>$24/half doz</h5>
+              <button class="addCart" data-name="Raspberry Vanilla Macaron" data-price="24">Add to Cart</button>
+              <button class="adjustQuantity" data-name="Raspberry Vanilla Macaron" data-action="decrease">-</button>
+              <span class="quantityDisplay" data-name="Raspberry Vanilla Macaron">0</span>
+              <button class="adjustQuantity" data-name="Raspberry Vanilla Macaron" data-action="increase">+</button>
+            </section>
+      
+            <section class="goods">
+              <h3>Chocolate / Nuts</h3>
+              <img src="images/macaron-chocolate-almonds.jpg" alt="Chocolate macaron with chocolate and almond frosting">
+              <h4>Macaron</h4>
+              <ul>
+                <li>Flavor: Chocolate</li>
+                <li>Frosting: Chocolate-Almonds</li>
+              </ul>
+              <h5>$24/half doz</h5>
+              <button class="addCart" data-name="Chocolate Nuts Macaron" data-price="24">Add to Cart</button>
+              <button class="adjustQuantity" data-name="Chocolate Nuts Macaron" data-action="decrease">-</button>
+              <span class="quantityDisplay" data-name="Chocolate Nuts Macaron">0</span>
+              <button class="adjustQuantity" data-name="Chocolate Nuts Macaron" data-action="increase">+</button>
+            </section>
+      
+            <section class="goods">
+              <h3>Honey / Butter</h3>
+              <img src="images/macaron-vanilla-honey-butter.jpg" alt="Vanilla macaron with honey & butter frosting">
+              <h4>Macaron</h4>
+              <ul>
+                <li>Flavor: Vanilla</li>
+                <li>Frosting: Honey-Butter</li>
+              </ul>
+              <h5>$24/half doz</h5>
+              <button class="addCart" data-name="Honey Butter" data-price="24">Add to Cart</button>
+              <button class="adjustQuantity" data-name="Honey Butter" data-action="decrease">-</button>
+              <span class="quantityDisplay" data-name="Honey Butter">0</span>
+              <button class="adjustQuantity" data-name="Honey Butter" data-action="increase">+</button>
+            </section>
+          </section>
 
         <section id="game">
             <h2>Play to Win a Box of Macarons</h2>
