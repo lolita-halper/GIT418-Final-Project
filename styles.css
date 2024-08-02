@@ -328,11 +328,21 @@ header.active {
   transform: none;
   width: 100%;
   margin: 0 auto;
-  font-weight: 400;
+}
+header.active .logo {
+  height: 45px;
+  width: auto;
+  margin: 0px 80px;
+  margin-top: 5px;
 }
 
 header.active .mainNav ul li a {
   color: var(--dk-gray) !important;
+  font-size: 0.9rem;
+}
+
+header.active button[onclick] { 
+  padding: 5px 10px;
 }
 
 #navigation {
