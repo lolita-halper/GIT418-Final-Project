@@ -1,3 +1,5 @@
+'use strict';
+
 // sticky nav animation with jquery
 
 document.addEventListener('DOMContentLoaded', () => {
