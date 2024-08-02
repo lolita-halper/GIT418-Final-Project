@@ -4,7 +4,7 @@
   if ($(document).scrollTop() < 1) {
     $("#home").removeClass("fixed");
     $("#home").removeClass("active");
-  } else if ($(document).scrollTop() > 750) {
+  } else if ($(document).scrollTop() > 600) {
     $("#home").removeClass("fixed");
     $("#home").addClass("active");
   } else {
@@ -13,16 +13,17 @@
 });*/
 document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('scroll', () => {
-      const header = document.getElementById('home');
-      if (document.documentElement.scrollTop < 1) {
-          header.classList.remove('fixed');
-          header.classList.remove('active');
-      } else if (document.documentElement.scrollTop > 750) {
-          header.classList.remove('fixed');
-          header.classList.add('active');
-      } else {
-          header.classList.add('fixed');
-      }
+    const header = document.getElementById('home');
+    if (document.documentElement.scrollTop < 1) {
+      header.classList.remove('fixed');
+      header.classList.remove('active');
+    } else if (document.documentElement.scrollTop > 720) {
+      header.classList.remove('fixed');
+      header.classList.add('active');
+    } else {
+      header.classList.add('fixed');
+      header.classList.remove('active');
+    }
   });
 });
 

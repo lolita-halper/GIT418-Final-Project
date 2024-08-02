@@ -322,16 +322,17 @@ header.fixed {
 header.active {
   transition: all 0.4s ease-in-out;
   /*background: rgba(54, 34, 34, 0.7);*/
-  background: rgba(255,255,255, 0.5);
+  background: rgba(255,255,255, 0.9);
   padding: 0 0 5px 0;
   opacity: 1;
   transform: none;
   width: 100%;
   margin: 0 auto;
+  font-weight: 400;
 }
 
-header.active .js--mainNav ul {
-  color: blue;
+header.active .mainNav ul li a {
+  color: var(--dk-gray) !important;
 }
 
 #navigation {
