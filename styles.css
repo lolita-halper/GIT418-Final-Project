@@ -279,6 +279,7 @@ ion-icon {
   height: 80vh;
   background-size: cover;
   position: relative;
+  z-index: 1;
 }
 
 .button {
@@ -306,6 +307,9 @@ ion-icon {
 
 header {
   position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   max-width: 1280px;
   padding: 0 0 5px 0;
   width: 100%;
@@ -321,7 +325,6 @@ header.fixed {
 
 header.active {
   transition: all 0.4s ease-in-out;
-  /*background: rgba(54, 34, 34, 0.7);*/
   background: rgba(255,255,255, 0.9);
   padding: 0 0 5px 0;
   opacity: 1;
@@ -397,6 +400,7 @@ header.active button[onclick] {
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
+  z-index: 2;
 }
 
 /* ---------- NAV STYLES END---------- */
@@ -699,12 +703,20 @@ span {
 #form {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr 4fr;
+  grid-template-rows: 1fr 1fr 4fr;
   padding: 40px;
   background-color: var(--brown);
 }
 
 #form h2 {
+  color: var(--white);
+}
+
+#form h3 {
+  font-size: 1.5em;
+  text-transform: none;
+  max-width: 50%;
+  margin: 0 auto;
   color: var(--white);
 }
 

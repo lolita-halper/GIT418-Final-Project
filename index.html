@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="Author" content="Lolita Halper">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A Baking Story - Baking Pasteries for Every Occasion.</title>
+    <title>A Baking Story - Baking Pastries for Every Occasion.</title>
     
      <!--For the icons-->
-     <script src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js" defer></script>
+     <!--<script src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js" defer></script>-->
      <script src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js" defer></script>
      <!--My written javascript file with defer-->
      <script src="js/jquery-3.7.1.min.js" defer></script>
@@ -18,12 +18,19 @@
     <link rel="stylesheet" href="styles.css"> 
 </head>
 <body>
+  <div class="hero">
+    <section id="ourStoryHeader">
+      <h1>Welcome to our story<br>about cupcakes and macarons</h1>
+      <a href="#pastries" class="button" id="btnOrderPastries">Order Pastries</a>
+      <a href=#features class="button" id="btnOurStory">Our Story</a>
+    </section>
+  </div>
+
   <header id="home">
     <section id="navigation">
       <h2 id="mainNavigation">Main Navigation</h2>
       <a href="#home"><img src="images/baking-logo.png" alt="A Baking Story logo" class="logo"></a>
       <nav class="mainNav">
-        <!--<h2 id="mainNavigation">Main Navigation</h2>-->
         <ul class="mainNav">
           <li><a href="#features">Our Story</a></li>
           <li><a href="#howTo">Baking</a></li>
@@ -34,13 +41,7 @@
       </nav>
     </section>
   </header>
-  <div class="hero">
-    <section id="ourStoryHeader">
-      <h1>Welcome to our story<br>about cupcakes and macarons</h1>
-      <a href="#pastries" class="button" id="btnOrderPastries">Order Pastries</a>
-      <a href=#features class="button" id="btnOurStory">Our Story</a>
-    </section>
-  </div>
+  
     <main>
         <section id="features">
             <h2>Always Fresh — Baked to Perfection</h2>
@@ -223,6 +224,7 @@
 
        <section id="form">
             <h2>What Would You Like to Tell Us</h2>
+            <h3>Please write us if you have any questions at all about our baked goods and locations. </h3>
                 <form id="formContact">
                     <label for="name">Full Name<span class="required">*</span></label>
                     <span class="message">Please enter your full name</span>
