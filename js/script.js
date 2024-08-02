@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (document.documentElement.scrollTop < 1) {
       header.classList.remove('fixed');
       header.classList.remove('active');
-    } else if (document.documentElement.scrollTop > 720) {
+    } else if (document.documentElement.scrollTop > 400) {
       header.classList.remove('fixed');
       header.classList.add('active');
     } else {
