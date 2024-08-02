@@ -276,7 +276,7 @@ ion-icon {
       rgba(54, 34, 34, 0.7)
     ),
     url(images/hero.jpg);
-  height: 100vh;
+  height: 60vh;
   background-size: cover;
   position: relative;
 }
