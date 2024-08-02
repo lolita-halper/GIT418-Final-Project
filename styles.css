@@ -270,7 +270,7 @@ ion-icon {
   font-size: 1px;
 }
 
-header {
+.hero {
   background-image: linear-gradient(
       rgba(54, 34, 34, 0.7),
       rgba(54, 34, 34, 0.7)
@@ -278,7 +278,7 @@ header {
     url(images/hero.jpg);
   height: 100vh;
   background-size: cover;
-  background-attachment: fixed;
+  position: relative;
 }
 
 .button {
@@ -304,21 +304,60 @@ header {
 
 /* ---------- NAV STYLES START---------- */
 
-.mainNav {
+header {
+  position: fixed;
+  max-width: 1280px;
+  padding: 0 0 5px 0;
+  width: 100%;
+  margin: 0 auto;
+  z-index: 3;
+  transition: all 0.1s ease-in-out;
+}
+
+header.fixed {
+  opacity: 0;
+  transform: translateY(-50%);
+}
+
+header.active {
+  transition: all 0.4s ease-in-out;
+  /*background: rgba(54, 34, 34, 0.7);*/
+  background: rgba(255,255,255, 0.5);
+  padding: 0 0 5px 0;
+  opacity: 1;
+  transform: none;
+  width: 100%;
+  margin: 0 auto;
+}
+
+header.active .js--mainNav ul {
+  color: blue;
+}
+
+#navigation {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 0 auto;
+}
+
+.mainNav ul {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0;
   list-style: none;
 }
 
-.mainNav li {
+.mainNav ul li {
   display: inline-block;
   margin-left: 40px;
 }
 
-.mainNav li a:link,
-.mainNav li a:visited {
+.mainNav ul li a:link,
+.mainNav ul li a:visited {
   padding: 8px 0;
   color: #fff;
   text-decoration: none;
@@ -329,24 +368,16 @@ header {
   transition: border-bottom 0.2s;
 }
 
-.mainNav li a:hover,
-.mainNav li a:active {
+.mainNav ul li a:hover,
+.mainNav ul li a:active {
   border-bottom: 2px solid #ff9494;
 }
 
 .logo {
-  height: 100px;
+  height: 70px;
   width: auto;
   margin: 5px 80px;
-  margin-top: 20px;
-}
-
-.logo-brown {
-  display: none;
-  height: 50px;
-  width: auto;
-  float: left;
-  margin: 5px 0;
+  margin-top: 10px;
 }
 
 #ourStoryHeader {
@@ -358,32 +389,7 @@ header {
 }
 
 /* ---------- NAV STYLES END---------- */
-/*----------- STICKY NAVI START -------*/
-.sticky {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background-color: rgba(242, 242, 242, 0.96);
-  -webkit-box-shadow: 0 2px 2px #e0e0e0;
-  box-shadow: 0 2px 2px #e0e0e0;
-  z-index: 9999;
-}
 
-.sticky .main-nav { margin-top: 18px; }
-
-.sticky .main-nav li a:link,
-.sticky .main-nav li a:visited {
-  padding: 16px 0;
-  color: #555;
-}
-.sticky .logo {
-  display: none;
-}
-.sticky .logo-brown {
-  display: block;
-}
-/*----------- STICKY NAVI END---------*/
 /*--------MAIN SECTION START----------*/
 
 main {

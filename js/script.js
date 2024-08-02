@@ -1,3 +1,33 @@
+// sticky nav animation with jquery
+
+/*$(window).scroll(function () {
+  if ($(document).scrollTop() < 1) {
+    $("#home").removeClass("fixed");
+    $("#home").removeClass("active");
+  } else if ($(document).scrollTop() > 750) {
+    $("#home").removeClass("fixed");
+    $("#home").addClass("active");
+  } else {
+    $("#home").addClass("fixed");
+  }
+});*/
+document.addEventListener('DOMContentLoaded', () => {
+  window.addEventListener('scroll', () => {
+      const header = document.getElementById('home');
+      if (document.documentElement.scrollTop < 1) {
+          header.classList.remove('fixed');
+          header.classList.remove('active');
+      } else if (document.documentElement.scrollTop > 750) {
+          header.classList.remove('fixed');
+          header.classList.add('active');
+      } else {
+          header.classList.add('fixed');
+      }
+  });
+});
+
+
+
 // Macaron Game with random numbers
 
 function getRandomNumber(min, max) {

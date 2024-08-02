@@ -9,7 +9,8 @@
      <!--For the icons-->
      <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js" defer></script>
      <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js" defer></script>
-     <!--My written javascript file with async-->
+     <!--My written javascript file with defer-->
+     <script src="js/jquery-3.7.1.min.js" defer></script>
     <script src="js/script.js" defer></script>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,28 +18,28 @@
     <link rel="stylesheet" href="styles.css"> 
 </head>
 <body>
-    <header id="home">
-        <section id="ourStoryHeader">
-            <h1>Welcome to our story<br>about cupcakes and macarons</h1>
-            <a href="#pastries" class="button" id="btnOrderPastries">Order Pastries</a>
-            <a href=#features class="button" id="btnOurStory">Our Story</a>
-        </section>
-        <nav class="mainNav">
-            <h2 id="mainNavigation">Main Navigation</h2>
-            
-            <a href="#home"><img src="images/baking-logo.png" alt="A Baking Story logo" class="logo"></a>
-            <a href="#home"><img src="images/baking-logo-br.png" alt="a brown baking story logo" class="logo-brown"></a>
-                      
-           
-                <ul class="mainNav js--mainNav">
-                    <li><a href="#features">Our Story</a></li>
-                    <li><a href="#howTo">Baking</a></li>
-                    <li><a href="#pastries">Pastries</a></li>
-                    <li><a href="#form">Contact Us</a></li>
-                    <li><button onclick="toggleColors()">Toggle Dark/Light Mode</button></li>
-                </ul>
-        </nav>
-    </header>
+  <header id="home">
+    <section id="navigation">
+      <a href="#home"><img src="images/baking-logo.png" alt="A Baking Story logo" class="logo"></a>
+      <nav class="mainNav">
+        <h2 id="mainNavigation">Main Navigation</h2>
+        <ul class="mainNav js--mainNav">
+          <li><a href="#features">Our Story</a></li>
+          <li><a href="#howTo">Baking</a></li>
+          <li><a href="#pastries">Pastries</a></li>
+          <li><a href="#form">Contact Us</a></li>
+          <li><button onclick="toggleColors()">Toggle Dark/Light Mode</button></li>
+        </ul>
+      </nav>
+    </section>
+  </header>
+  <div class="hero">
+    <section id="ourStoryHeader">
+      <h1>Welcome to our story<br>about cupcakes and macarons</h1>
+      <a href="#pastries" class="button" id="btnOrderPastries">Order Pastries</a>
+      <a href=#features class="button" id="btnOurStory">Our Story</a>
+    </section>
+  </div>
     <main>
         <section id="features">
             <h2>Always Fresh — Baked to Perfection</h2>
