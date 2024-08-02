@@ -149,7 +149,7 @@ function getRandomNumber(min, max) {
   // Function to call both toggle functions
   function toggleColors() {
     toggleBodyColor();
-    toggleDivColor();
+    //toggleDivColor();
   }
   
 
