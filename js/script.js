@@ -1,16 +1,5 @@
 // sticky nav animation with jquery
 
-/*$(window).scroll(function () {
-  if ($(document).scrollTop() < 1) {
-    $("#home").removeClass("fixed");
-    $("#home").removeClass("active");
-  } else if ($(document).scrollTop() > 600) {
-    $("#home").removeClass("fixed");
-    $("#home").addClass("active");
-  } else {
-    $("#home").addClass("fixed");
-  }
-});*/
 document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('scroll', () => {
     const header = document.getElementById('home');
@@ -26,8 +15,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
-
-
 
 // Macaron Game with random numbers
 
@@ -144,15 +131,16 @@ function getRandomNumber(min, max) {
     }
   });
   
+
   // Change Color - light and dark mode for body element
   function toggleBodyColor() {
-    var element = document.body;
+   let element = document.body;
     element.classList.toggle("mystyle");
   }
   
   // Change Color - light and dark mode for a specific element
   function toggleDivColor() {
-    var element = document.getElementById("myDIV");
+    let element = document.getElementById("myDIV");
     element.classList.toggle("mystyle");
   }
   
@@ -162,6 +150,7 @@ function getRandomNumber(min, max) {
     toggleDivColor();
   }
   
+
   // Function for my Shopping Cart
   
   document.addEventListener("DOMContentLoaded", () => {
