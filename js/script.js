@@ -141,10 +141,10 @@ function getRandomNumber(min, max) {
   }
   
   // Change Color - light and dark mode for a specific element
-  function toggleDivColor() {
+  /*function toggleDivColor() {
     let element = document.getElementById("myDIV");
     element.classList.toggle("mystyle");
-  }
+  }*/
   
   // Function to call both toggle functions
   function toggleColors() {
