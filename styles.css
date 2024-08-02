@@ -341,6 +341,14 @@ header {
   margin-top: 20px;
 }
 
+.logo-brown {
+  display: none;
+  height: 50px;
+  width: auto;
+  float: left;
+  margin: 5px 0;
+}
+
 #ourStoryHeader {
   position: absolute;
   top: 50%;
@@ -350,7 +358,32 @@ header {
 }
 
 /* ---------- NAV STYLES END---------- */
+/*----------- STICKY NAVI START -------*/
+.sticky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(242, 242, 242, 0.96);
+  -webkit-box-shadow: 0 2px 2px #e0e0e0;
+  box-shadow: 0 2px 2px #e0e0e0;
+  z-index: 9999;
+}
 
+.sticky .main-nav { margin-top: 18px; }
+
+.sticky .main-nav li a:link,
+.sticky .main-nav li a:visited {
+  padding: 16px 0;
+  color: #555;
+}
+.sticky .logo {
+  display: none;
+}
+.sticky .logo-brown {
+  display: block;
+}
+/*----------- STICKY NAVI END---------*/
 /*--------MAIN SECTION START----------*/
 
 main {
