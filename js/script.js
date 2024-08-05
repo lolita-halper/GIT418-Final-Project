@@ -3,48 +3,57 @@
 // sticky nav animation with jquery
 
 document.addEventListener('DOMContentLoaded', () => {
+  // Add a scroll event listener to the window object
   window.addEventListener('scroll', () => {
+    // Get the header element by the ID
     const header = document.getElementById('home');
     if (document.documentElement.scrollTop < 1) {
+      // If scrolled to the top, remove 'fixed' and 'active' classes
       header.classList.remove('fixed');
       header.classList.remove('active');
+      // If scrolled more than 400px, remove 'fixed' and add 'active' class
     } else if (document.documentElement.scrollTop > 400) {
       header.classList.remove('fixed');
       header.classList.add('active');
     } else {
+       // If scrolled between 1px and 400px, add 'fixed' class and remove 'active' class
       header.classList.add('fixed');
       header.classList.remove('active');
     }
   });
 });
 
+
 // Macaron Game with random numbers
 
+// Function to generate a random number between a given min and max
 function getRandomNumber(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
-  
+  // Main game function
   function game() {
+    // Get the elements where the die values and game message will be displayed
     let dieDisplay1 = document.getElementById("random1");
     let dieDisplay2 = document.getElementById("random2");
     let gameMessage = document.getElementById("gameMsg");
-  
+  // Generate random numbers for the two dice
     let die1 = getRandomNumber(1, 6);
     let die2 = getRandomNumber(1, 6);
-  
+  // Display the die values in the respective elements
     dieDisplay1.innerHTML = die1;
     dieDisplay2.innerHTML = die2;
-  
+  // Check if both dice show 1, which is a win condition
     if (die1 === 1 && die2 === 1) {
       gameMessage.innerHTML = "Macarons! You Win!";
     } else {
       gameMessage.innerHTML = "You Lose. Try Again.";
     }
   }
-  
+  // Add an event listener to the play button to start the game when clicked
   document.getElementById("gamePlay").addEventListener("click", game);
   
-  //Form for customers
+
+  //Form for Customers
   
   document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("formContact");
@@ -166,12 +175,15 @@ function toggleColors() {
   }
   */
 
+
+
   // Function for my Shopping Cart
   
   document.addEventListener("DOMContentLoaded", () => {
     const cart = {};
     const taxRate = 0.0875;
-  
+
+  // Function to update the cart display
     const updateCartDisplay = () => {
       const cartItemCount = document.getElementById("cartItemCount");
       const subtotalSum = document.getElementById("subtotal-sum");
@@ -179,13 +191,14 @@ function toggleColors() {
       const totalSum = document.getElementById("total-sum");
   
       let subtotal = 0;
+      // Calculate the subtotal by summing up the price of each item multiplied by its quantity
       for (const item in cart) {
         subtotal += cart[item].price * cart[item].quantity;
       }
   
-      const tax = subtotal * taxRate;
-      const total = subtotal + tax;
-  
+      const tax = subtotal * taxRate;  // Calculate tax based on subtotal
+      const total = subtotal + tax;    // Calculate total amount including tax
+  // Update the text content of the respective elements with the calculated values
       cartItemCount.textContent = `(${Object.keys(cart).reduce(
         (sum, item) => sum + cart[item].quantity,
         0
@@ -206,7 +219,7 @@ function toggleColors() {
         const quantityDisplay = document.querySelector(
           `.quantityDisplay[data-name="${name}"]`
         );
-  
+  // Update button states and quantity display based on item quantity
         if (decreaseButton && increaseButton && quantityDisplay) {
           decreaseButton.disabled = item.quantity === 0; // Disable decrease button when quantity is 0
           increaseButton.disabled = false; // Always enable increase button
@@ -214,26 +227,27 @@ function toggleColors() {
         }
       });
     };
-  
+   // Function to add an item to the cart
     const addToCart = (name, price) => {
       if (!cart[name]) {
-        cart[name] = { price, quantity: 0 };
+        cart[name] = { price, quantity: 0 };   // Initialize item in cart if not already present
       }
-      cart[name].quantity += 1;
+      cart[name].quantity += 1;  // Increase item quantity by 1
       console.log(
         `Added to cart: ${name} (Quantity: ${cart[name].quantity}, Price: ${cart[name].price})`
       ); // Debug log
-      updateCartDisplay();
+      updateCartDisplay();  // Update the cart display
     };
-  
+
+  // Function to adjust the quantity of an item in the cart
     const adjustQuantity = (name, action) => {
       if (!cart[name]) return;
   
       if (action === "increase") {
-        cart[name].quantity += 1;
+        cart[name].quantity += 1;  // Increase item quantity by 1
       } else if (action === "decrease") {
         if (cart[name].quantity > 0) {
-          cart[name].quantity -= 1;
+          cart[name].quantity -= 1;  // Decrease item quantity by 1 if greater than 0
         }
       }
       console.log(
@@ -241,7 +255,8 @@ function toggleColors() {
       ); // Debug log
       updateCartDisplay();
     };
-  
+
+  // Add event listeners to "Add to Cart" buttons
     document.querySelectorAll(".addCart").forEach((button) => {
       button.addEventListener("click", (event) => {
         const name = event.target.getAttribute("data-name");
@@ -264,7 +279,8 @@ function toggleColors() {
         }
       });
     });
-  
+
+  // Add event listeners to quantity adjustment buttons
     document.querySelectorAll(".adjustQuantity").forEach((button) => {
       button.addEventListener("click", (event) => {
         const name = event.target.getAttribute("data-name");
@@ -272,12 +288,15 @@ function toggleColors() {
         console.log(
           `Button clicked: Adjust Quantity (Name: ${name}, Action: ${action})`
         ); // Debug log
-        adjustQuantity(name, action);
+        adjustQuantity(name, action);   // Adjust item quantity
       });
     });
   
-    updateCartDisplay();
+    updateCartDisplay(); 
   });
+
+
+
 
   // tabs with the bakery locations section
   $( function() {
@@ -287,11 +306,14 @@ function toggleColors() {
   //use datepicker to choose delivery date
   $( function(){
     $("#datepicker").datepicker({
+      // Set the date format to display as Day, Month Date, Year
       dateFormat: "DD, MM d, yy",
+      // Define a function to run when a date is selected from the datepicker
       onSelect: function(dateText){
         $(this).change();
       }
     })
+     // Attach an event handler for the 'change' event on the datepicker element
     .on("change", function(){
       $("#dateDisplay").html("You have Selected: " +
         $(this).val());
@@ -301,20 +323,25 @@ function toggleColors() {
   // Slide show / carousel inside the "howTo section"
 
   $(document).ready(function() {
+    // Select the slideshow container with the class "cycle-slideshow"
     let $slideshow = $(".cycle-slideshow");
-
+// Toggle pause and resume of the slideshow when it is clicked
     $slideshow.on("click", function() {
+      // If the slideshow is currently paused, resume the slideshow
         if ($slideshow.is(".cycle-paused"))
-            $slideshow.cycle("resume");                
+            $slideshow.cycle("resume");
+          // Otherwise, pause the slideshow                
         else
             $slideshow.cycle("pause");
     });
-
+// Event handler for the previous button to navigate to the previous slide
     $("#previous-btn").on("click", function() {
+      // Stop the current slideshow
         $slideshow.cycle("stop");
+         // Move to the previous slide
         $slideshow.cycle("prev");
     });
-
+// Event handler for the next button to navigate to the next slide
     $("#next-btn").on("click", function() {
         $slideshow.cycle("stop");
         $slideshow.cycle("next");

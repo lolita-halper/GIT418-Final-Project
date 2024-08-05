@@ -132,6 +132,8 @@ table {
 :root {
   font-size: 1em;
   --fonts: "Lato", "Arial", sans-serif;
+  --dark-mode: #362222;
+  --light-mode: #ffe3e1;
   --white: #fff;
   --blk: #000;
   --brown: #362222;
