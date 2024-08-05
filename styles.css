@@ -132,8 +132,10 @@ table {
 :root {
   font-size: 1em;
   --fonts: "Lato", "Arial", sans-serif;
-  --dark-mode: #362222;
-  --light-mode: #ffe3e1;
+  --dark-mode-bg: #362222;
+  --dark-mode-color: #fff;
+  --light-mode-bg: #ffe3e1;
+  --light-mode-color: #444;
   --white: #fff;
   --blk: #000;
   --brown: #362222;
@@ -173,36 +175,42 @@ table {
   padding: 0;
   box-sizing: border-box;
 }
-/*
-html {
-  background-color: var(--lt-natural);
-}*/
 body {
   font-family: var(--fonts);
   font-weight: 300;
-  color: var(--dk-gray);
   line-height: 1.35;
   margin: 0 auto;
   padding: 0;
   overflow-x: hidden;
   max-width: 1280px;
 }
+/*--------MAIN SECTION START----------*/
+main {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-auto-rows: auto;
+  margin: 0 auto;
+  background-color: var(--light-mode-bg);
+  color: var(--light-mode-color)
+}
+#features, #pastries, #form {
+  background-color: var(--dark-mode-bg);
+  color: var(--dark-mode-color)
+}
+footer {
+  background-color: var(--dark-mode-bg);
+}
+/*--------MAIN SECTION END----------*/
+
 /* ---------- DARK AND LIGHT MODE START ---------- */
-.mystyle {
-  width: 100%;
-  background-color: var(--brown);
-  color: white;
-  box-sizing: border-box;
-}
+
 .dark-mode {
-  background-color: var(--brown);
-  color: var(--white);
+  --light-mode-bg: var(--dark-mode-bg);
+  --light-mode-color: var(--dark-mode-color);
+  --dark-mode-bg: var(var(--light-mode-bg));
+  --dark-mode-color: var(var(--light-mode-color))
 }
-.light-mode {
-  background-color: var(--lt-pink);
-  color: var(--dk-gray-);
-}
-button[onclick] {
+.toggleColors {
   width: fit-content;
   color: #fff;
   background-color: var(--dk-pink);
@@ -266,8 +274,8 @@ ion-icon {
 }
 .hero {
   background-image: linear-gradient(
-      rgba(54, 34, 34, 0.7),
-      rgba(54, 34, 34, 0.7)
+      rgba(54, 34, 34, 0.8),
+      rgba(54, 34, 34, 0.8)
     ),
     url(images/hero.jpg);
   height: 60vh;
@@ -381,22 +389,6 @@ header.active button[onclick] {
   z-index: 2;
 }
 /* ---------- NAV STYLES END---------- */
-
-/*--------MAIN SECTION START----------*/
-main {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-auto-rows: auto;
-  margin: 0 auto;
-  background-color: var(--brown);
-}
-#howTo, #locations, #game {
-  background-color: var(--lt-pink);
-}
-footer {
-  background-color: var(--brown);
-}
-/*--------MAIN SECTION END----------*/
 
 /*--------FEATURE SECTION START----------*/
 #features {

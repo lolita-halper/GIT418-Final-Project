@@ -142,39 +142,31 @@ function getRandomNumber(min, max) {
     }
   });
   
+
 // Change Color - light and dark mode for body element
-function toggleBodyColor() {
-  let element = document.body;
-  element.classList.toggle("dark-mode");
-  element.classList.toggle("light-mode");
-}
-// Function to call both toggle functions
-function toggleColors() {
-  toggleBodyColor();
-}
 
+// selectors
+const themeToggleBtn = document.querySelector('.toggleColors');
 
+// state
+const theme = localStorage.getItem('theme');
 
-/*
-  // Change Color - light and dark mode for body element
-  function toggleBodyColor() {
-   let element = document.body;
-    element.classList.toggle("mystyle");
+// on mount
+theme && document.body.classList.add(theme);
+
+// handlers
+const handleThemeToggle = () => {
+  document.body.classList.toggle('dark-mode');
+  if (document.body.classList.contains('dark-mode')) {
+    localStorage.setItem('theme', 'dark-mode');
+  } else {
+    localStorage.removeItem('theme');
   }
+};
   
-  // Change Color - light and dark mode for a specific element
-  function toggleDivColor() {
-    let element = document.getElementById("mystyle");
-    element.classList.toggle("mystyle");
-  }
+// events
+themeToggleBtn.addEventListener('click', handleThemeToggle );
   
-  // Function to call both toggle functions
-  function toggleColors() {
-    toggleBodyColor();
-    //toggleDivColor();
-  }
-  */
-
 
 
   // Function for my Shopping Cart
