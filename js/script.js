@@ -133,7 +133,20 @@ function getRandomNumber(min, max) {
     }
   });
   
+// Change Color - light and dark mode for body element
+function toggleBodyColor() {
+  let element = document.body;
+  element.classList.toggle("dark-mode");
+  element.classList.toggle("light-mode");
+}
+// Function to call both toggle functions
+function toggleColors() {
+  toggleBodyColor();
+}
 
+
+
+/*
   // Change Color - light and dark mode for body element
   function toggleBodyColor() {
    let element = document.body;
@@ -141,17 +154,17 @@ function getRandomNumber(min, max) {
   }
   
   // Change Color - light and dark mode for a specific element
-  /*function toggleDivColor() {
-    let element = document.getElementById("myDIV");
+  function toggleDivColor() {
+    let element = document.getElementById("mystyle");
     element.classList.toggle("mystyle");
-  }*/
+  }
   
   // Function to call both toggle functions
   function toggleColors() {
     toggleBodyColor();
     //toggleDivColor();
   }
-  
+  */
 
   // Function for my Shopping Cart
   
@@ -265,3 +278,45 @@ function getRandomNumber(min, max) {
   
     updateCartDisplay();
   });
+
+  // tabs with the bakery locations section
+  $( function() {
+    $( "#tabs" ).tabs();
+  } );
+
+  //use datepicker to choose delivery date
+  $( function(){
+    $("#datepicker").datepicker({
+      dateFormat: "DD, MM d, yy",
+      onSelect: function(dateText){
+        $(this).change();
+      }
+    })
+    .on("change", function(){
+      $("#dateDisplay").html("You have Selected: " +
+        $(this).val());
+    })
+  });
+  
+  // Slide show / carousel inside the "howTo section"
+
+  $(document).ready(function() {
+    let $slideshow = $(".cycle-slideshow");
+
+    $slideshow.on("click", function() {
+        if ($slideshow.is(".cycle-paused"))
+            $slideshow.cycle("resume");                
+        else
+            $slideshow.cycle("pause");
+    });
+
+    $("#previous-btn").on("click", function() {
+        $slideshow.cycle("stop");
+        $slideshow.cycle("prev");
+    });
+
+    $("#next-btn").on("click", function() {
+        $slideshow.cycle("stop");
+        $slideshow.cycle("next");
+    });
+});
