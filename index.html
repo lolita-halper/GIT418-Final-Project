@@ -314,7 +314,7 @@
           </section>
         </div>
       </section>
-      <section id="form">
+      <!--<section id="form">
           <h2>What Would You Like to Tell Us</h2>
           <h3>Please write us if you have any questions at all about our baked goods and locations. </h3>
               <form id="formContact">
@@ -349,7 +349,55 @@
                   <p>You have successfully submitted the form. Here is the information you sent us:</p>
                   <p id="formSub"></p>
               </section>
+      </section>-->
+      
+      <section id="form">
+        <h2>What Would You Like to Tell Us</h2>
+        <h3>Please write us if you have any questions at all about our baked goods and locations. </h3>
+            <form id="formContact">
+                <label for="name">Full Name<span class="required">*</span></label>
+                <span class="message">Please enter your full name</span>
+                <input name="name" id="name" type="text" autocomplete="name">
+            
+                <label for="email">Email<span class="required">*</span></label>
+                <span class="message">Please enter your email address</span>
+                <input name="email" id="email" type="email" autocomplete="email">
+            
+                <label for="phone">Phone<span class="required">*</span></label>
+                <span class="message">Please enter your phone number</span>
+                <input name="phone" id="phone" type="tel" autocomplete="tel">
+
+                <label for="message">Message<span class="required">*</span></label>
+                <span class="message">Please enter your message</span>
+                <textarea id="message"></textarea>
+
+                <fieldset>
+                  <span class="message">Please enter your preferred contact method</span>
+                  <legend>Preferred Contact Method<span class="required">*</span></legend>
+                  <label for="pref-phone" class="radio">
+                    <span class="radio_input">
+                      <input type="radio" name="pref-contact" id="pref-phone" required checked>
+                      <span class="radio_control"></span>
+                    </span>
+                  <span class="radio_label">Phone</span>
+                  </label>
+                  <label for="pref-email" class="radio">
+                    <span class="radio_input">
+                      <input type="radio" name="pref-contact" id="pref-email"  required>
+                      <span class="radio_control"></span>
+                    </span>
+                    <span class="radio_label">Email</span>
+                  </label>
+                </fieldset><span id="contact"></span>
+                <input type="submit" name="submit" id="submit">
+            </form>
+            <section id="success" class="hide">
+                <h4>Thank you!</h4>
+                <p>You have successfully submitted the form. Here is the information you sent us:</p>
+                <p id="formSub"></p>
+            </section>
       </section>
+      
       <section id="game">
         <h2>Play to Win a Box of Macarons</h2>
         <p>Click the button to generate two random numbers. <br>If both numbers are ones, you win!</p>
