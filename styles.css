@@ -220,7 +220,9 @@ footer {
   padding: 10px 20px;
   margin: 0 auto;
   margin-left: 20px;
+  cursor: pointer;
 }
+
 /* ---------- DARK AND LIGHT MODE END ---------- */
 
 /* ------------ HEADER STYLES START------------- */
@@ -469,12 +471,16 @@ iframe {
   grid-row: 4;
   grid-column: 1/3;
 }
+img.cycle-slide {
+  cursor: pointer;
+}
 .controls {
 text-align: center;
 padding: 20px 0;
 }
 .controls button {
   padding: 10px 20px;
+  cursor: pointer;
 }
 .cycle-pager {
 text-align: center;
@@ -588,6 +594,7 @@ span#total-sum {
   font-weight: 300;
   padding: 2px 15px;
   font-size: 1.2rem;
+  cursor: pointer;
 }
 span.quantityDisplay {
   padding-left: 7px;
@@ -662,6 +669,7 @@ span {
   padding: 10px 30px;
   margin: 0 auto;
   margin-bottom: 20px;
+  cursor: pointer;
 }
 /*--------GAME SECTION END----------*/
 
@@ -737,6 +745,7 @@ input[type="submit"] {
   font-weight: 400;
   padding: 10px 30px;
   margin-top: 20px;
+  cursor: pointer;
 }
 #success.hide {
   display: none;
