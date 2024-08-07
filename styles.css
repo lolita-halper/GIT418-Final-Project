@@ -149,10 +149,11 @@ table {
   --dk-pink: #ff9494;
   --lt-green-gray: #d6d2c4;
   --dk-green-gray: #5d534a;
-  --box-shadow-sm: -3px 3px 7px var(--med-gray);
+  --box-shadow-sm: 0px 0px 2px var(--dk-green-gray);
 	--box-shadow-lg: -6px 6px 10px var(--med-gray);
   --filter-shadow-sm: drop-shadow(-3px 3px 7px var(--med-gray));
 	--filter-shadow-lg: drop-shadow(-6px 6px 10px var(--med-gray));
+ 
   
 }
 /* ----- SKIP LINK STYLES ----- */
@@ -183,6 +184,9 @@ body {
   padding: 0;
   overflow-x: hidden;
   max-width: 1280px;
+  background-color: var(--light-mode-bg);
+  color: var(--light-mode-color);
+  background-image: url("data:image/svg+xml,<svg id='patternId' width='100%' height='100%' xmlns='http://www.w3.org/2000/svg'><defs><pattern id='a' patternUnits='userSpaceOnUse' width='20' height='20' patternTransform='scale(1) rotate(0)'><rect x='0' y='0' width='100%' height='100%' fill='hsla(0, 0%, 100%, 0)'/><path d='M10-6V6M10 14v12M26 10H14M6 10H-6'  stroke-linejoin='round' stroke-linecap='round' stroke-width='0.5' stroke='hsla(0, 0%, 33%, 1)' fill='none'/></pattern></defs><rect width='800%' height='800%' transform='translate(0,0)' fill='url(%23a)'/></svg>")
 }
 /*--------MAIN SECTION START----------*/
 main {
@@ -191,14 +195,11 @@ main {
   grid-auto-rows: auto;
   margin: 0 auto;
   background-color: var(--light-mode-bg);
-  color: var(--light-mode-color)
+  color: var(--light-mode-color);
 }
-#features, #pastries, #form {
-  background-color: var(--dark-mode-bg);
-  color: var(--dark-mode-color)
-}
-footer {
-  background-color: var(--dark-mode-bg);
+#features, #pastries, #form, footer {
+  background-color: var(--brown);
+  color: var(--white);
 }
 /*--------MAIN SECTION END----------*/
 
@@ -208,7 +209,9 @@ footer {
   --light-mode-bg: var(--dark-mode-bg);
   --light-mode-color: var(--dark-mode-color);
   --dark-mode-bg: var(var(--light-mode-bg));
-  --dark-mode-color: var(var(--light-mode-color))
+  --dark-mode-color: var(var(--light-mode-color));
+  background-color: var(--light-mode-bg);
+  color: var(--light-mode-color);
 }
 .toggleColors {
   width: fit-content;
@@ -280,7 +283,7 @@ ion-icon {
       rgba(54, 34, 34, 0.8)
     ),
     url(images/hero.jpg);
-  height: 60vh;
+  height: 50vh;
   background-size: cover;
   position: relative;
   z-index: 1;
@@ -614,7 +617,7 @@ span.quantityDisplay {
 #game {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-rows: auto;
   padding: 40px;
 }
 #game h2,
@@ -682,6 +685,7 @@ span {
 }
 #form h2 {
   color: var(--white);
+  grid-row: 1;
 }
 #form h3 {
   font-size: 1.5em;
@@ -689,19 +693,20 @@ span {
   max-width: 50%;
   margin: 0 auto;
   color: var(--white);
+  grid-row: 2;
 }
 #formContact {
   margin: 0 auto;
   color: var(--white);
   font-size: 1.1em;
-  padding-right: 33%;
-  max-width: 50%;
+  width: 50%;
+  grid-row: 3;
 }
 input,
 label,
 fieldset {
   display: block;
-  width: 300%;
+  width: 100%;
 }
 .required {
   display: inline-block;
@@ -723,7 +728,7 @@ fieldset {
   border: 1px solid #fff;
   padding: 0.5em 0 1em 0.5em;
   margin: 0.75em 0 0.25em 0;
-  width: 300%;
+  width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
@@ -738,16 +743,13 @@ label.radio {
 }
 input[type="radio"] {
   margin-left: 60%;
-  margin-top: 15%;
+  width: 200%;
 }
 input[type="submit"] {
-  padding: 0.75em;
   width: fit-content;
   height: auto;
-  margin-left: 125%;
   color: #fff;
   background-color: var(--dk-pink);
-  border: none;
   font-family: var(--fonts);
   text-decoration: none;
   border-radius: 1.5em;
@@ -756,6 +758,8 @@ input[type="submit"] {
   padding: 10px 30px;
   margin-top: 20px;
   cursor: pointer;
+  margin: 0 auto;
+  margin-top: 20px;
 }
 #success.hide {
   display: none;
@@ -778,16 +782,17 @@ input[type="submit"] {
   border: 1px solid orange;
 }
 textarea {
-  width: 300%;
+  width: 100%;
   height: 5em;
   margin-bottom: 1em;
-}/*
-input:focus,
+}
+input[type="text"]:focus,
+#mySubmit:focus,
 textarea:focus {
   border-color: var(--dk-pink);
   box-shadow: 0 0 0 3px rgba(255, 148, 148, 0.3);
   border-radius: 4px;
-}*/
+}
 input:invalid,
 textarea:invalid {
   border-color: var(--dk-gray);

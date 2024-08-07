@@ -54,93 +54,123 @@ function getRandomNumber(min, max) {
   
 
   //Form for Customers
-  
-  document.addEventListener("DOMContentLoaded", () => {
-    const form = document.getElementById("formContact");
-    const successMessage = document.getElementById("success");
-    const formSub = document.getElementById("formSub");
-  
-    form.addEventListener("submit", (event) => {
-      event.preventDefault();
-  
-      // Clear previous error messages
-      document
-        .querySelectorAll(".message")
-        .forEach((message) => (message.style.display = "none"));
-      document
-        .querySelectorAll("input, textarea")
-        .forEach((input) => input.classList.remove("errorInput"));
-  
-      let isValid = true;
-  
-      // Validate Full Name
-      const name = document.getElementById("name");
-      if (name.value.trim() === "") {
-        showError(name, "Please enter your full name");
-        isValid = false;
-      }
-  
-      // Validate Email
-      const email = document.getElementById("email");
-      if (!validateEmail(email.value.trim())) {
-        showError(email, "Please enter a valid email address");
-        isValid = false;
-      }
-  
-      // Validate Phone
-      const phone = document.getElementById("phone");
-      if (phone.value.trim() === "") {
-        showError(phone, "Please enter your phone number");
-        isValid = false;
-      }
-  
-      // Validate Message
-      const message = document.getElementById("messages");
-      if (message.value.trim() === "") {
-        showError(message, "Please enter your message");
-        isValid = false;
-      }
-  
-      // Validate Preferred Contact Method
-      const prefPhone = document.getElementById("pref-phone");
-      const prefEmail = document.getElementById("pref-email");
-      if (!prefPhone.checked && !prefEmail.checked) {
-        showError(prefPhone, "Please select a preferred contact method");
-        showError(prefEmail, "Please select a preferred contact method");
-        isValid = false;
-      }
-  
-      if (isValid) {
-        successMessage.classList.remove("hide");
-        successMessage.classList.add("show");
-  
-        // Display form data in the success message
-        formSub.innerHTML = `
-                  <strong>Name:</strong> ${name.value.trim()}<br>
-                  <strong>Email:</strong> ${email.value.trim()}<br>
-                  <strong>Phone:</strong> ${phone.value.trim()}<br>
-                  <strong>Message:</strong> ${message.value.trim()}<br>
-                  <strong>Preferred Contact Method:</strong> ${
-                    prefPhone.checked ? "Phone" : "Email"
-                  }
-              `;
-        // Clear the form
-        form.reset();
-      }
-    });
-  
-    function showError(input, message) {
-      input.classList.add("errorInput");
-      const errorMessage = input.nextElementSibling;
-      errorMessage.textContent = message;
-      errorMessage.style.display = "block";
-    }
-  
-    function validateEmail(email) {
-      const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      return re.test(String(email).toLowerCase());
-    }
+
+function formContact(e) {
+  // prevent default form submission
+  e.preventDefault();
+
+  // access the form itself and save in a variable
+  let myForm = document.querySelector("#formContact");
+
+  // access all of the error spans to be used as error message holders
+  let errorSpans = document.querySelectorAll("#formContact .message");
+
+  // boolean variable used to track form validity
+  let isValid = true;
+
+  // reset display of the error inputs before validating
+  myForm.fullName.classList.remove("errorInput");
+  myForm.email.classList.remove("errorInput");
+  myForm.phone.classList.remove("errorInput");
+  myForm.message.classList.remove("errorInput");
+  document
+    .getElementsByClassName("radio_control")[0]
+    .classList.remove("errorInput");
+  document
+    .getElementsByClassName("radio_control")[1]
+    .classList.remove("errorInput");
+
+  // reset the display of the error message spans
+  errorSpans.forEach(function (span) {
+    span.classList.remove("error");
   });
+
+  // hide the success area on the page - this is what shows the user what they submitted in the form when submission is successful
+  document.querySelector("#success").classList.remove("show");
+  document.querySelector("#success").classList.add("hide");
+
+  // regular expressions to validate the username/asurite and zipcode
+  let fNameRegex = /^[a-z ,.'-]+$/i;
+  let eRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  let pRegex = /^(?:\+?\d{1,3}[ -]?)?\(?\d{2,4}\)?[ -]?\d{2,4}[ -]?\d{2,4}[ -]?\d{2,4}$/;
+
+  // validate full name, it should not be blank and should match the fullName regex
+  if (myForm.fullName.value === "" || !fNameRegex.test(myForm.fullName.value)) {
+    // on error, add the errorInput class to the input itself
+    myForm.fullName.classList.add("errorInput");
+
+    // on error, add the error class to the span associated with this input that has the message class
+    errorSpans[0].classList.add("error");
+
+    // set the form validation tracking variable to false
+    isValid = false;
+  }
+
+  // validate email, it should not be blank and should match the email regex
+  if (myForm.email.value === "" || !eRegex.test(myForm.email.value)) {
+    // on error, add the errorInput class to the input itself
+    myForm.email.classList.add("errorInput");
+
+    // on error, add the error class to the span associated with this input that has the message class
+    errorSpans[1].classList.add("error");
+
+    // set the form validation tracking variable to false
+    isValid = false;
+  }
+
+  // validate phone number, it should not be blank and should match the phone regex
+  if (myForm.phone.value === "" || !pRegex.test(myForm.phone.value)) {
+    // on error, add the errorInput class to the input itself
+    myForm.phone.classList.add("errorInput");
+
+    // on error, add the error class to the span associated with this input that has the message class
+    errorSpans[2].classList.add("error");
+
+    // set the form validation tracking variable to false
+    isValid = false;
+  }
+
+  // validate message, it should not be blank
+  if (myForm.message.value === "") {
+    // on error, add the errorInput class to the input itself
+    myForm.message.classList.add("errorInput");
+
+    // on error, add the error class to the span associated with this input that has the message class
+    errorSpans[3].classList.add("error");
+
+    // set the form validation tracking variable to false
+    isValid = false;
+  }
+
+  // validate preferred contact method
+  let contactIsValid = false;
+  if (!myForm["pref-contact"].value) {
+    document.querySelector("#contact").classList.add("error");
+    errorSpans[4].classList.add("error");
+    contactIsValid = false;
+    isValid = false;
+  } else {
+    contactIsValid = true;
+  }
+
+  // if the form is valid, submit it and reset
+  if (isValid) {
+    // display the 'success' section to the user
+    document.querySelector("#success").classList.remove("hide");
+    document.querySelector("#success").classList.add("show");
+
+    // display the user's input data (to show what they are sending to the server)
+    document.getElementById(
+      "formSub"
+    ).innerHTML = `<strong>Full Name: </strong>${myForm.fullName.value}<br><strong>Email Address: </strong>${myForm.email.value}<br><strong>Phone Number: </strong>${myForm.phone.value}<br><strong>Message: </strong>${myForm.message.value}<br><strong>Preferred Contact Method: </strong>${myForm["pref-contact"].value}`;
+
+    // reset the form
+    myForm.reset();
+  }
+}
+
+// for validation on submit
+document.getElementById("formContact").addEventListener("submit", formContact);
   
 
 
@@ -175,8 +205,8 @@ themeToggleBtn.addEventListener('click', handleThemeToggle );
   document.addEventListener("DOMContentLoaded", () => {
     const cart = {};
     const taxRate = 0.0875;
-
-  // Function to update the cart display
+  
+    // Function to update the cart display
     const updateCartDisplay = () => {
       const cartItemCount = document.getElementById("cartItemCount");
       const subtotalSum = document.getElementById("subtotal-sum");
@@ -189,9 +219,9 @@ themeToggleBtn.addEventListener('click', handleThemeToggle );
         subtotal += cart[item].price * cart[item].quantity;
       }
   
-      const tax = subtotal * taxRate;  // Calculate tax based on subtotal
-      const total = subtotal + tax;    // Calculate total amount including tax
-  // Update the text content of the respective elements with the calculated values
+      const tax = subtotal * taxRate; // Calculate tax based on subtotal
+      const total = subtotal + tax; // Calculate total amount including tax
+      // Update the text content of the respective elements with the calculated values
       cartItemCount.textContent = `(${Object.keys(cart).reduce(
         (sum, item) => sum + cart[item].quantity,
         0
@@ -212,7 +242,7 @@ themeToggleBtn.addEventListener('click', handleThemeToggle );
         const quantityDisplay = document.querySelector(
           `.quantityDisplay[data-name="${name}"]`
         );
-  // Update button states and quantity display based on item quantity
+        // Update button states and quantity display based on item quantity
         if (decreaseButton && increaseButton && quantityDisplay) {
           decreaseButton.disabled = item.quantity === 0; // Disable decrease button when quantity is 0
           increaseButton.disabled = false; // Always enable increase button
@@ -220,27 +250,18 @@ themeToggleBtn.addEventListener('click', handleThemeToggle );
         }
       });
     };
-   // Function to add an item to the cart
-    const addToCart = (name, price) => {
-      if (!cart[name]) {
-        cart[name] = { price, quantity: 0 };   // Initialize item in cart if not already present
-      }
-      cart[name].quantity += 1;  // Increase item quantity by 1
-      console.log(
-        `Added to cart: ${name} (Quantity: ${cart[name].quantity}, Price: ${cart[name].price})`
-      ); // Debug log
-      updateCartDisplay();  // Update the cart display
-    };
-
-  // Function to adjust the quantity of an item in the cart
+  
+    // Function to adjust the quantity of an item in the cart
     const adjustQuantity = (name, action) => {
-      if (!cart[name]) return;
+      if (!cart[name]) {
+        cart[name] = { price: 24, quantity: 0 }; // Default price if not set
+      }
   
       if (action === "increase") {
-        cart[name].quantity += 1;  // Increase item quantity by 1
+        cart[name].quantity += 1; // Increase item quantity by 1
       } else if (action === "decrease") {
         if (cart[name].quantity > 0) {
-          cart[name].quantity -= 1;  // Decrease item quantity by 1 if greater than 0
+          cart[name].quantity -= 1; // Decrease item quantity by 1 if greater than 0
         }
       }
       console.log(
@@ -248,32 +269,8 @@ themeToggleBtn.addEventListener('click', handleThemeToggle );
       ); // Debug log
       updateCartDisplay();
     };
-
-  // Add event listeners to "Add to Cart" buttons
-    document.querySelectorAll(".addCart").forEach((button) => {
-      button.addEventListener("click", (event) => {
-        const name = event.target.getAttribute("data-name");
-        const price = parseFloat(event.target.getAttribute("data-price"));
-        console.log(
-          `Button clicked: Add to Cart (Name: ${name}, Price: ${price})`
-        ); // Debug log
-        addToCart(name, price);
   
-        const decreaseButton = document.querySelector(
-          `.adjustQuantity[data-name="${name}"][data-action="decrease"]`
-        );
-        const increaseButton = document.querySelector(
-          `.adjustQuantity[data-name="${name}"][data-action="increase"]`
-        );
-  
-        if (decreaseButton && increaseButton) {
-          decreaseButton.disabled = false;
-          increaseButton.disabled = false;
-        }
-      });
-    });
-
-  // Add event listeners to quantity adjustment buttons
+    // Add event listeners to quantity adjustment buttons
     document.querySelectorAll(".adjustQuantity").forEach((button) => {
       button.addEventListener("click", (event) => {
         const name = event.target.getAttribute("data-name");
@@ -281,12 +278,13 @@ themeToggleBtn.addEventListener('click', handleThemeToggle );
         console.log(
           `Button clicked: Adjust Quantity (Name: ${name}, Action: ${action})`
         ); // Debug log
-        adjustQuantity(name, action);   // Adjust item quantity
+        adjustQuantity(name, action); // Adjust item quantity
       });
     });
   
-    updateCartDisplay(); 
+    updateCartDisplay();
   });
+  
 
 
 
