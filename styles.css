@@ -325,7 +325,7 @@ header.fixed {
 }
 header.active {
   transition: all 0.4s ease-in-out;
-  background: rgba(255,255,255, 0.9);
+  background: rgba(255,255,255, 0.8);
   padding: 0 0 5px 0;
   opacity: 1;
   transform: none;
