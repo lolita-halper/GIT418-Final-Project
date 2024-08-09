@@ -336,18 +336,6 @@ themeToggleBtn.addEventListener('click', handleThemeToggle );
     });
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
 function getWeather(lat, long) {
   // the section where we'll display output
   let weatherSection = document.getElementById("weather");
