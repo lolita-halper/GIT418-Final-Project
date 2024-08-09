@@ -206,12 +206,16 @@ main {
 /* ---------- DARK AND LIGHT MODE START ---------- */
 
 .dark-mode {
-  --light-mode-bg: var(--dark-mode-bg);
-  --light-mode-color: var(--dark-mode-color);
-  --dark-mode-bg: var(--light-mode-bg);
-  --dark-mode-color: var(--light-mode-color);
-  background-color: var(--light-mode-bg);
-  color: var(--light-mode-color);
+  background-color: var(--dark-mode-bg);
+  color: var(--dark-mode-color);
+}
+.dark-mode main,
+.dark-mode #features,
+.dark-mode #pastries,
+.dark-mode #form,
+.dark-mode footer {
+  background-color: var(--dark-mode-bg);
+  color: var(--dark-mode-color);
 }
 .toggleColors {
   width: fit-content;
