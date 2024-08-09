@@ -286,9 +286,6 @@ themeToggleBtn.addEventListener('click', handleThemeToggle );
   });
   
 
-
-
-
   // tabs with the bakery locations section
   $( function() {
     $( "#tabs" ).tabs();
@@ -338,3 +335,124 @@ themeToggleBtn.addEventListener('click', handleThemeToggle );
         $slideshow.cycle("next");
     });
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+function getWeather(lat, long) {
+  // the section where we'll display output
+  let weatherSection = document.getElementById("weather");
+
+  // an empty string for building output
+  let output = "";
+
+  //clear out any previous output
+  weatherSection.innerHTML = "";
+
+  // these are some of the variables we'll need for the API call and displaying the returned data
+  let apiKey = "b3372fb34ebae582415c1353a4732404";
+  let imgUrlStart = "http://openweathermap.org/img/wn/";
+  let imgUrlEnd = "@2x.png";
+  let endpoint = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&units=imperial&appid=${apiKey}`;
+
+  // Let's create our XMLHttpRequest object
+  let xhr = new XMLHttpRequest();
+
+  // 	add and event listener for the load event on the object
+  xhr.addEventListener("load", function () {
+    // for successful response, let's display the weather
+    if (this.status == 200) {
+      // log response to console
+      //console.log(this.response);
+
+      // used to calculate the actual date from the ms given as date/time by the API
+      let ms = this.response.dt * 1000;
+      let date = new Date(ms);
+
+      ms = this.response.sys.sunrise * 1000;
+      let rise = new Date(ms);
+
+      ms = this.response.sys.sunset * 1000;
+      let set = new Date(ms);
+
+      // to build url for the weather icon/image
+      let iconCode = this.response.weather[0].icon;
+      let iconUrl = `${imgUrlStart}${iconCode}${imgUrlEnd}`;
+
+      // append to the output string
+      output += `<h4>Today's Weather for ${this.response.name}</h4>
+								<img src="${iconUrl}" alt="${this.response.weather[0].main}">
+								<dl>
+									<dt>Current Conditions:</dt>
+									<dd>${this.response.weather[0].description}</dd>
+									<dt>Current Temp:</dt>
+									<dd>${Math.round(this.response.main.temp)}&deg;</dd>
+									<dt>Local Max Temp:</dt>
+									<dd>${Math.round(this.response.main.temp_max)}&deg;</dd>
+									<dt>Local Min Temp:</dt>
+									<dd>${Math.round(this.response.main.temp_min)}&deg;</dd>
+									<dt>Sunrise:</dt>
+									<dd>${new Intl.DateTimeFormat("en-US", {
+                    dateStyle: "short",
+                    timeStyle: "medium"
+                  }).format(rise)}</dd>
+									<dt>Sunset:</dt>
+									<dd>${new Intl.DateTimeFormat("en-US", {
+                    dateStyle: "short",
+                    timeStyle: "medium"
+                  }).format(set)}</dd>
+								</dl>`;
+      // remove the class from the section that has been keeping it hidden on the page
+      weatherSection.classList.remove("hidden");
+      // add the class to make it display
+      weatherSection.classList.add("display");
+      // add the output string to that section to display our weather data from the API
+      weatherSection.innerHTML = output;
+    } else {
+      // display an error message in the case where we get a 401 response from the server (which indicates an error in the call)
+      weatherSection.innerHTML =
+        "There was an issue with your call to the Open Weather API. Check the endopint and try again.";
+    }
+  });
+
+  // set the expected response type
+  xhr.responseType = "json";
+
+  // open a connection to the endpoint of the correct type
+  xhr.open("GET", endpoint);
+
+  // send the request to the server
+  xhr.send();
+}
+
+// this function will get the user's geolocation on button click, and once it has that, it will call the function with the call to the API
+// If it is unable to get the geolocation info, an error message will be displayed and the API will not be called
+function getLocation(e) {
+  // preventDefault form submission
+  e.preventDefault();
+
+  //get user's geolocation to use to return weather for that location
+
+  //user will have to agree to allow this access, may need to use Firefox
+  if (!navigator.geolocation) {
+    document.getElementById("weather").textContent = "Geolocation is not supported by your browser";
+  } else {
+    navigator.geolocation.getCurrentPosition(function(location) {
+      getWeather(location.coords.latitude, location.coords.longitude);
+    });
+  }
+}
+
+// EVENT LISTENERS
+
+
+document.getElementById("myWeatherSubmit").addEventListener("click", getLocation);
