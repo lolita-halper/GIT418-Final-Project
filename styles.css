@@ -946,7 +946,7 @@ font-weight: 300;
 #footer {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 2fr 1fr;
+  grid-template-rows: auto;
   padding: 40px;
   color: var(--lt-gray);
   margin: 0 auto;
@@ -955,7 +955,7 @@ small {
   grid-column: 1/4;
   text-align: center;
   font-size: small;
-  padding-top: 20px;
+  padding-top: 60px;
 }
 #footer h3 {
   visibility: hidden;

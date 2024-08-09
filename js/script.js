@@ -24,37 +24,169 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+// Change Color - light and dark mode for body element
 
-// Macaron Game with random numbers
+// selectors
+const themeToggleBtn = document.querySelector('.toggleColors');
 
-// Function to generate a random number between a given min and max
-function getRandomNumber(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
+// state
+const theme = localStorage.getItem('theme');
+
+// on mount
+theme && document.body.classList.add(theme);
+
+// handlers
+const handleThemeToggle = () => {
+  document.body.classList.toggle('dark-mode');
+  if (document.body.classList.contains('dark-mode')) {
+    localStorage.setItem('theme', 'dark-mode');
+  } else {
+    localStorage.removeItem('theme');
   }
-  // Main game function
-  function game() {
-    // Get the elements where the die values and game message will be displayed
-    let dieDisplay1 = document.getElementById("random1");
-    let dieDisplay2 = document.getElementById("random2");
-    let gameMessage = document.getElementById("gameMsg");
-  // Generate random numbers for the two dice
-    let die1 = getRandomNumber(1, 6);
-    let die2 = getRandomNumber(1, 6);
-  // Display the die values in the respective elements
-    dieDisplay1.innerHTML = die1;
-    dieDisplay2.innerHTML = die2;
-  // Check if both dice show 1, which is a win condition
-    if (die1 === 1 && die2 === 1) {
-      gameMessage.innerHTML = "Macarons! You Win!";
-    } else {
-      gameMessage.innerHTML = "You Lose. Try Again.";
-    }
-  }
-  // Add an event listener to the play button to start the game when clicked
-  document.getElementById("gamePlay").addEventListener("click", game);
+};
+  
+// events
+themeToggleBtn.addEventListener('click', handleThemeToggle );
+
+
+  // Slide show / carousel inside the "howTo section"
+
+  $(document).ready(function() {
+    // Select the slideshow container with the class "cycle-slideshow"
+    let $slideshow = $(".cycle-slideshow");
+// Toggle pause and resume of the slideshow when it is clicked
+    $slideshow.on("click", function() {
+      // If the slideshow is currently paused, resume the slideshow
+        if ($slideshow.is(".cycle-paused"))
+            $slideshow.cycle("resume");
+          // Otherwise, pause the slideshow                
+        else
+            $slideshow.cycle("pause");
+    });
+// Event handler for the previous button to navigate to the previous slide
+    $("#previous-btn").on("click", function() {
+      // Stop the current slideshow
+        $slideshow.cycle("stop");
+         // Move to the previous slide
+        $slideshow.cycle("prev");
+    });
+// Event handler for the next button to navigate to the next slide
+    $("#next-btn").on("click", function() {
+        $slideshow.cycle("stop");
+        $slideshow.cycle("next");
+    });
+});
+
+
+  // Function for my Shopping Cart
+  
+  document.addEventListener("DOMContentLoaded", () => {
+    const cart = {};
+    const taxRate = 0.0875;
+  
+    // Function to update the cart display
+    const updateCartDisplay = () => {
+      const cartItemCount = document.getElementById("cartItemCount");
+      const subtotalSum = document.getElementById("subtotal-sum");
+      const taxSum = document.getElementById("tax-sum");
+      const totalSum = document.getElementById("total-sum");
+  
+      let subtotal = 0;
+      // Calculate the subtotal by summing up the price of each item multiplied by its quantity
+      for (const item in cart) {
+        subtotal += cart[item].price * cart[item].quantity;
+      }
+  
+      const tax = subtotal * taxRate; // Calculate tax based on subtotal
+      const total = subtotal + tax; // Calculate total amount including tax
+      // Update the text content of the respective elements with the calculated values
+      cartItemCount.textContent = `(${Object.keys(cart).reduce(
+        (sum, item) => sum + cart[item].quantity,
+        0
+      )})`;
+      subtotalSum.textContent = subtotal.toFixed(2);
+      taxSum.textContent = tax.toFixed(2);
+      totalSum.textContent = total.toFixed(2);
+  
+      // Enable/disable quantity adjustment buttons and update quantity display
+      Object.keys(cart).forEach((name) => {
+        const item = cart[name];
+        const decreaseButton = document.querySelector(
+          `.adjustQuantity[data-name="${name}"][data-action="decrease"]`
+        );
+        const increaseButton = document.querySelector(
+          `.adjustQuantity[data-name="${name}"][data-action="increase"]`
+        );
+        const quantityDisplay = document.querySelector(
+          `.quantityDisplay[data-name="${name}"]`
+        );
+        // Update button states and quantity display based on item quantity
+        if (decreaseButton && increaseButton && quantityDisplay) {
+          decreaseButton.disabled = item.quantity === 0; // Disable decrease button when quantity is 0
+          increaseButton.disabled = false; // Always enable increase button
+          quantityDisplay.textContent = item.quantity;
+        }
+      });
+    };
+  
+    // Function to adjust the quantity of an item in the cart
+    const adjustQuantity = (name, action) => {
+      if (!cart[name]) {
+        cart[name] = { price: 24, quantity: 0 }; // Default price if not set
+      }
+  
+      if (action === "increase") {
+        cart[name].quantity += 1; // Increase item quantity by 1
+      } else if (action === "decrease") {
+        if (cart[name].quantity > 0) {
+          cart[name].quantity -= 1; // Decrease item quantity by 1 if greater than 0
+        }
+      }
+      console.log(
+        `Adjusted quantity for: ${name} (Quantity: ${cart[name].quantity})`
+      ); // Debug log
+      updateCartDisplay();
+    };
+  
+    // Add event listeners to quantity adjustment buttons
+    document.querySelectorAll(".adjustQuantity").forEach((button) => {
+      button.addEventListener("click", (event) => {
+        const name = event.target.getAttribute("data-name");
+        const action = event.target.getAttribute("data-action");
+        console.log(
+          `Button clicked: Adjust Quantity (Name: ${name}, Action: ${action})`
+        ); // Debug log
+        adjustQuantity(name, action); // Adjust item quantity
+      });
+    });
+  
+    updateCartDisplay();
+  });
   
 
-  //Form for Customers
+  // tabs with the bakery locations section
+  $( function() {
+    $( "#tabs" ).tabs();
+  } );
+
+  //use datepicker to choose delivery date
+  $( function(){
+    $("#datepicker").datepicker({
+      // Set the date format to display as Day, Month Date, Year
+      dateFormat: "DD, MM d, yy",
+      // Define a function to run when a date is selected from the datepicker
+      onSelect: function(dateText){
+        $(this).change();
+      }
+    })
+     // Attach an event handler for the 'change' event on the datepicker element
+    .on("change", function(){
+      $("#dateDisplay").html("You have Selected: " +
+        $(this).val());
+    })
+  });
+
+//Form for Customers
 
 function formContact(e) {
   // prevent default form submission
@@ -172,170 +304,36 @@ function formContact(e) {
 
 // for validation on submit
 document.getElementById("formContact").addEventListener("submit", formContact);
-  
 
 
-// Change Color - light and dark mode for body element
+// Macaron Game with random numbers
 
-// selectors
-const themeToggleBtn = document.querySelector('.toggleColors');
-
-// state
-const theme = localStorage.getItem('theme');
-
-// on mount
-theme && document.body.classList.add(theme);
-
-// handlers
-const handleThemeToggle = () => {
-  document.body.classList.toggle('dark-mode');
-  if (document.body.classList.contains('dark-mode')) {
-    localStorage.setItem('theme', 'dark-mode');
+// Function to generate a random number between a given min and max
+function getRandomNumber(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+// Main game function
+function game() {
+  // Get the elements where the die values and game message will be displayed
+  let dieDisplay1 = document.getElementById("random1");
+  let dieDisplay2 = document.getElementById("random2");
+  let gameMessage = document.getElementById("gameMsg");
+// Generate random numbers for the two dice
+  let die1 = getRandomNumber(1, 6);
+  let die2 = getRandomNumber(1, 6);
+// Display the die values in the respective elements
+  dieDisplay1.innerHTML = die1;
+  dieDisplay2.innerHTML = die2;
+// Check if both dice show 1, which is a win condition
+  if (die1 === 1 && die2 === 1) {
+    gameMessage.innerHTML = "Macarons! You Win!";
   } else {
-    localStorage.removeItem('theme');
+    gameMessage.innerHTML = "You Lose. Try Again.";
   }
-};
-  
-// events
-themeToggleBtn.addEventListener('click', handleThemeToggle );
-  
+}
+// Add an event listener to the play button to start the game when clicked
+document.getElementById("gamePlay").addEventListener("click", game);
 
-
-  // Function for my Shopping Cart
-  
-  document.addEventListener("DOMContentLoaded", () => {
-    const cart = {};
-    const taxRate = 0.0875;
-  
-    // Function to update the cart display
-    const updateCartDisplay = () => {
-      const cartItemCount = document.getElementById("cartItemCount");
-      const subtotalSum = document.getElementById("subtotal-sum");
-      const taxSum = document.getElementById("tax-sum");
-      const totalSum = document.getElementById("total-sum");
-  
-      let subtotal = 0;
-      // Calculate the subtotal by summing up the price of each item multiplied by its quantity
-      for (const item in cart) {
-        subtotal += cart[item].price * cart[item].quantity;
-      }
-  
-      const tax = subtotal * taxRate; // Calculate tax based on subtotal
-      const total = subtotal + tax; // Calculate total amount including tax
-      // Update the text content of the respective elements with the calculated values
-      cartItemCount.textContent = `(${Object.keys(cart).reduce(
-        (sum, item) => sum + cart[item].quantity,
-        0
-      )})`;
-      subtotalSum.textContent = subtotal.toFixed(2);
-      taxSum.textContent = tax.toFixed(2);
-      totalSum.textContent = total.toFixed(2);
-  
-      // Enable/disable quantity adjustment buttons and update quantity display
-      Object.keys(cart).forEach((name) => {
-        const item = cart[name];
-        const decreaseButton = document.querySelector(
-          `.adjustQuantity[data-name="${name}"][data-action="decrease"]`
-        );
-        const increaseButton = document.querySelector(
-          `.adjustQuantity[data-name="${name}"][data-action="increase"]`
-        );
-        const quantityDisplay = document.querySelector(
-          `.quantityDisplay[data-name="${name}"]`
-        );
-        // Update button states and quantity display based on item quantity
-        if (decreaseButton && increaseButton && quantityDisplay) {
-          decreaseButton.disabled = item.quantity === 0; // Disable decrease button when quantity is 0
-          increaseButton.disabled = false; // Always enable increase button
-          quantityDisplay.textContent = item.quantity;
-        }
-      });
-    };
-  
-    // Function to adjust the quantity of an item in the cart
-    const adjustQuantity = (name, action) => {
-      if (!cart[name]) {
-        cart[name] = { price: 24, quantity: 0 }; // Default price if not set
-      }
-  
-      if (action === "increase") {
-        cart[name].quantity += 1; // Increase item quantity by 1
-      } else if (action === "decrease") {
-        if (cart[name].quantity > 0) {
-          cart[name].quantity -= 1; // Decrease item quantity by 1 if greater than 0
-        }
-      }
-      console.log(
-        `Adjusted quantity for: ${name} (Quantity: ${cart[name].quantity})`
-      ); // Debug log
-      updateCartDisplay();
-    };
-  
-    // Add event listeners to quantity adjustment buttons
-    document.querySelectorAll(".adjustQuantity").forEach((button) => {
-      button.addEventListener("click", (event) => {
-        const name = event.target.getAttribute("data-name");
-        const action = event.target.getAttribute("data-action");
-        console.log(
-          `Button clicked: Adjust Quantity (Name: ${name}, Action: ${action})`
-        ); // Debug log
-        adjustQuantity(name, action); // Adjust item quantity
-      });
-    });
-  
-    updateCartDisplay();
-  });
-  
-
-  // tabs with the bakery locations section
-  $( function() {
-    $( "#tabs" ).tabs();
-  } );
-
-  //use datepicker to choose delivery date
-  $( function(){
-    $("#datepicker").datepicker({
-      // Set the date format to display as Day, Month Date, Year
-      dateFormat: "DD, MM d, yy",
-      // Define a function to run when a date is selected from the datepicker
-      onSelect: function(dateText){
-        $(this).change();
-      }
-    })
-     // Attach an event handler for the 'change' event on the datepicker element
-    .on("change", function(){
-      $("#dateDisplay").html("You have Selected: " +
-        $(this).val());
-    })
-  });
-  
-  // Slide show / carousel inside the "howTo section"
-
-  $(document).ready(function() {
-    // Select the slideshow container with the class "cycle-slideshow"
-    let $slideshow = $(".cycle-slideshow");
-// Toggle pause and resume of the slideshow when it is clicked
-    $slideshow.on("click", function() {
-      // If the slideshow is currently paused, resume the slideshow
-        if ($slideshow.is(".cycle-paused"))
-            $slideshow.cycle("resume");
-          // Otherwise, pause the slideshow                
-        else
-            $slideshow.cycle("pause");
-    });
-// Event handler for the previous button to navigate to the previous slide
-    $("#previous-btn").on("click", function() {
-      // Stop the current slideshow
-        $slideshow.cycle("stop");
-         // Move to the previous slide
-        $slideshow.cycle("prev");
-    });
-// Event handler for the next button to navigate to the next slide
-    $("#next-btn").on("click", function() {
-        $slideshow.cycle("stop");
-        $slideshow.cycle("next");
-    });
-});
 
 function getWeather(lat, long) {
   // the section where we'll display output
