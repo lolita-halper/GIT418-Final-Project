@@ -208,8 +208,8 @@ main {
 .dark-mode {
   --light-mode-bg: var(--dark-mode-bg);
   --light-mode-color: var(--dark-mode-color);
-  --dark-mode-bg: var(var(--light-mode-bg));
-  --dark-mode-color: var(var(--light-mode-color));
+  --dark-mode-bg: var(--light-mode-bg);
+  --dark-mode-color: var(--light-mode-color);
   background-color: var(--light-mode-bg);
   color: var(--light-mode-color);
 }
@@ -1019,5 +1019,14 @@ dl {
 	margin: 0 auto 2rem auto;
 	font-size: 1.1rem;
 }
-
+.myWeather h2 {
+  visibility: hidden;
+  position: absolute;
+  font-size: 1px;
+}
+#weather h3 {
+  visibility: hidden;
+  position: absolute;
+  font-size: 1px;
+}
 /*--------FOOTER SECTION END----------*/
